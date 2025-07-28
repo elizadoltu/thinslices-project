@@ -1,18 +1,31 @@
-import { useState } from 'react'
+import { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
 import { MantineProvider } from '@mantine/core';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import '@mantine/core/styles.css';
 
-function App() {
-  const [count, setCount] = useState(0)
 
+const Login = lazy(() => import('./pages/auth/Login'));
+
+const App: React.FC = () => {
   return (
-    <>
-      <MantineProvider>
-      </MantineProvider>;
-    </>
-  )
-}
+    <MantineProvider>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+            <ErrorBoundary fallback={<div>Something went wrong loading this page</div>}>
+              <Suspense fallback={<div className="items-center content-center">Loading...</div>}>
+                <Login />
+              </Suspense>
+            </ErrorBoundary>
+          }
+        />
+      </Routes>
+    </Router>
+    </MantineProvider>
+  );
+};
 
-export default App
+export default App;
