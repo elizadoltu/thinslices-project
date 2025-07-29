@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 :root {
-    --font-color: white;
     --size-unit: 16;
     --size-container-ideal: 1440;
     --size-container-min: 992px;
