@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-app.post('/webhook/github', async (req, res) => {
+app.post('/webhooks/github', async (req, res) => {
     try {
         const sig = req.headers['x-hub-signature-256'];
         const body = JSON.stringify(req.body);
