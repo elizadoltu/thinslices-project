@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-app.use('/webhooks/github', express.json());
+app.use('/webhook/github', express.json());
 
 const PORT = process.env.PORT || 8080;
 const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET;
@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-app.post('/webhooks/github', async (req, res) => {
+app.post('/webhook/github', async (req, res) => {
     try {
         const sig = req.headers['x-hub-signature-256'];
         const body = JSON.stringify(req.body);
