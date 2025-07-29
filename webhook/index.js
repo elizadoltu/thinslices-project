@@ -60,7 +60,7 @@ app.post('/webhooks/github', async (req, res) => {
                     Repository: ${payload.repository.full_name},
                     Pusher: ${payload.pusher.name},
                     Ref: ${payload.ref},
-                    Commit count: ${payload.commit.length}
+                    Commit count: ${payload.commits.length}
 
                     Commits: ${commitList}
                 `.trim()
